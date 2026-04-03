@@ -1,8 +1,0 @@
-services:
-  - type: web
-    name: 3d-skleggle
-    env: node
-    plan: free
-    buildCommand: npm install
-    startCommand: npm start
-    autoDeploy: true

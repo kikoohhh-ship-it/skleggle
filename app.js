@@ -226,6 +226,7 @@ const state = {
   nextObjectId: 1,
   lastRoll: null,
   expandedAssignedCardId: null,
+  expandedDrawnCardId: null,
   playableCharacters: createPlayableCharacters(),
   expandedCharacterId: null,
   boardMetrics: {
@@ -897,6 +898,7 @@ function renderDeckArea() {
           <div class="assign-card-actions">
             <button type="button" class="assign-card-button" data-card-id="${escapeHtml(card.id)}" ${state.characters.length ? "" : "disabled"}>Assign</button>
             <button type="button" class="discard-card-button" data-card-id="${escapeHtml(card.id)}">Discard</button>
+            <button type="button" class="expand-drawn-card-button" data-card-id="${escapeHtml(card.id)}">Expand</button>
           </div>
         </div>
       `;
@@ -924,7 +926,11 @@ function onDrawnCardsClick(event) {
     assignCardToCharacter(cardId, characterId);
     return;
   }
-
+const expandButton = target?.closest(".expand-drawn-card-button");
+if (expandButton) {
+  expandDrawnCard(expandButton.dataset.cardId);
+  return;
+}
   const discardButton = target?.closest(".discard-card-button");
   if (discardButton) {
     const { cardId } = discardButton.dataset;
@@ -2514,7 +2520,15 @@ function discardAssignedCard(cardId) {
   renderDeckArea();
   markGameDirty();
 }
-
+function expandDrawnCard(cardId) {
+  const card = state.drawnCards.find((c) => c.id === cardId);
+  if (!card) return;
+  ui.characterCardOverlayImage.src = card.image;
+  ui.characterCardOverlayImage.alt = card.title;
+  ui.characterCardOverlayTitle.textContent = card.title;
+  ui.characterCardOverlaySubtitle.textContent = card.meta || "Card";
+  ui.characterCardOverlay.hidden = false;
+}
 function expandCharacterCard() {
   const character = getCharacterById(state.selectedId);
   if (!character) {

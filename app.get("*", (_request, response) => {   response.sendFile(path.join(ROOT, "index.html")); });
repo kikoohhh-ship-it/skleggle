@@ -62,8 +62,6 @@ class MemoryLobbyStore {
 
 let lobbyStore = new MemoryLobbyStore();
 
-app.use(express.static(ROOT));
-
 app.get("/health", async (_request, response) => {
   response.json({
     ok: true,
@@ -81,6 +79,8 @@ app.get("/api/cards", (_request, response) => {
   console.log(`[deck:manifest] count=${cards.length}`);
   response.json({ cards });
 });
+
+app.use(express.static(ROOT));
 
 app.get("*", (_request, response) => {
   response.sendFile(path.join(ROOT, "index.html"));

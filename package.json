@@ -1,6 +1,6 @@
 {
   "name": "3d-skleggle",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "3D Skleggle tabletop web app with a lightweight Socket.IO lobby server.",
   "main": "server.js",

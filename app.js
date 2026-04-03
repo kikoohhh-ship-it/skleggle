@@ -309,13 +309,8 @@ function createDeck(cardCatalog = state.cardCatalog) {
 }
 
 function getFallbackCardImagePath(image) {
-  const deckPrefix = `${APP_BASE_PATH}/Deck/`;
-  if (image.startsWith(deckPrefix)) {
-    return image.replace(deckPrefix, `${APP_BASE_PATH}/`);
-  }
   return image;
 }
-
 function toPublicAssetPath(image) {
   if (image.startsWith("./")) {
     return `${APP_BASE_PATH}/${image.slice(2)}`;

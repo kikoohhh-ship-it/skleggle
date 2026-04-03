@@ -349,27 +349,7 @@ async function init() {
 }
 
 async function loadCardCatalog() {
-  try {
-    const response = await fetch(`${APP_BASE_PATH}/api/cards`);
-    if (!response.ok) {
-      throw new Error(`Card manifest request failed with ${response.status}`);
-    }
-
-    const payload = await response.json();
-    if (!payload || !Array.isArray(payload.cards) || payload.cards.length === 0) {
-      throw new Error("Card manifest was empty.");
-    }
-
-    const catalog = payload.cards.map((image, index) => createCardDefinition(image, index));
-    console.log("[deck:manifest:loaded]", {
-      count: catalog.length,
-      sample: catalog.slice(0, 5).map((card) => card.image),
-    });
-    return catalog;
-  } catch (error) {
-    console.warn("[deck:manifest:fallback]", error);
-    return CARD_IMAGE_PATHS.map((image, index) => createCardDefinition(image, index));
-  }
+  return CARD_IMAGE_PATHS.map((image, index) => createCardDefinition(image, index));
 }
 
 function getAppBasePath() {

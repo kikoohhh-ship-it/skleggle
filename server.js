@@ -73,7 +73,7 @@ app.get("/health", async (_request, response) => {
 });
 
 app.get("/api/cards", (_request, response) => {
-  const deckRoot = path.join(ROOT, "Deck");
+  const deckRoot = ROOT;
   const cards = listCardImages(deckRoot).map((absolutePath) => {
     return `/${path.relative(ROOT, absolutePath).split(path.sep).join("/")}`;
   });

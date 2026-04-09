@@ -1029,6 +1029,18 @@ input[type="color"] {
   font-weight: 700;
 }
 
+.expand-drawn-card-button {
+  appearance: none;
+  cursor: pointer;
+  min-height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 222, 160, 0.24);
+  background: linear-gradient(180deg, #f0d398, #c18a4d);
+  color: #24160e;
+  font: inherit;
+  font-weight: 700;
+}
+
 .draw-card.amber {
   background: linear-gradient(180deg, rgba(154, 88, 33, 0.46), rgba(80, 44, 18, 0.66));
 }

@@ -888,8 +888,6 @@ function renderDeckArea() {
       const cardMeta = card.meta || "Card";
       element.innerHTML = `
         <img src="${escapeHtml(card.image)}" data-fallback-src="${escapeHtml(card.fallbackImage || card.image)}" alt="${escapeHtml(card.title)}" class="draw-card-image" />
-        <button type="button" class="expand-drawn-card-button" data-card-id="${escapeHtml(card.id)}">Expand</button>
-<small>${escapeHtml(cardMeta)}</small>
         <small>${escapeHtml(cardMeta)}</small>
         <strong>${card.title}</strong>
         <span>${state.characters.length ? "Choose a piece for this card" : "Add a piece to assign cards"}</span>
